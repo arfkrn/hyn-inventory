@@ -1,0 +1,46 @@
+@import '/vendor/filament/filament/resources/css/theme.css';
+
+@source '../../../../app/Filament';
+@source '../../../../resources/views/filament';
+@source '../../../../vendor/filament/filament/resources/views';
+
+.fi-sidebar-item.fi-active .fi-sidebar-item-btn {
+    background-color: rgb(62, 136, 255) !important;
+}
+
+.fi-sidebar-item.fi-active .fi-sidebar-item-label {
+    color: #fff !important;
+}
+
+.fi-sidebar-item.fi-active .fi-sidebar-item-icon {
+    color: #fff !important;
+}
+
+.fi-ta-table thead th {
+    background-color: rgb(62, 136, 255);
+    color: #fff;
+}
+
+.fi-ac a {
+    background-color: #22bb33;
+    color: #fff;
+}
+
+.fi-ac button.fi-color-primary {
+    background-color: rgb(62, 136, 255) !important; /* hijau */
+    color: white !important;
+}
+
+.fi-modal-window button.fi-color-primary {
+    background-color: rgb(62, 136, 255) !important; /* hijau */
+    color: white !important;
+}
+
+.fi-input-wrp:focus-within {
+    border-color: #525252 !important;
+    box-shadow: 0 0 0 1px #525252 !important;
+}
+
+.fi-ta-actions a {
+    color: rgb(223, 223, 15)
+}
