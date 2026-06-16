@@ -1,5 +1,6 @@
 FROM php:8.3-fpm
 
+# Install dependensi sistem & konfigurasi ekstensi PHP bawaan Anda
 RUN apt-get update && apt-get install -y \
     git \
     unzip \
@@ -29,12 +30,10 @@ COPY docker/php/opcache.ini /usr/local/etc/php/conf.d/opcache.ini
 
 WORKDIR /var/www
 
+# Salin seluruh file dari lokal (yang sudah di-build & di-install vendor-nya)
 COPY . .
 
-RUN composer install --no-interaction
-
-RUN chown -R www-data:www-data \
-    storage \
-    bootstrap/cache
+# Atur permission agar Laravel bisa menulis log/session di VPS
+RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
 
 CMD ["php-fpm"]
