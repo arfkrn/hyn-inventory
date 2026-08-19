@@ -60,7 +60,6 @@ class PurchaseOrderForm
                                     ->required(),
                                 Textarea::make('keterangan')
                                     ->label('Keterangan')
-                                    ->required()
                             ])->columnSpan(1),
 
                         Section::make('Informasi detail bahan')

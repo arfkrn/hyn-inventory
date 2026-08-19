@@ -47,18 +47,6 @@ class PurchaseOrderResource extends Resource
         return PurchaseOrdersTable::configure($table);
     }
 
-    public static function shouldRegisterNavigation(): bool
-    {
-        $user = Auth::user();
-
-        // Jika user yang login adalah kepala gudang, SEMBUNYIKAN dari sidebar
-        if ($user && $user->hasRole('kepala gudang')) {
-            return false;
-        }
-
-        return true;
-    }
-
     public static function getEloquentQuery(): Builder
     {
         return parent::getEloquentQuery()

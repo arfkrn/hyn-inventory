@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('no_po');
             $table->date('tanggal_po');
             $table->string('nama_supplier');
-            $table->text('keterangan');
+            $table->text('keterangan')->nullable();
             $table->string('status')->default('proses');
             $table->timestamps();
         });

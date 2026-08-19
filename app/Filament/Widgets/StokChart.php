@@ -3,7 +3,8 @@
 namespace App\Filament\Widgets;
 
 use App\Models\BahanKeluarItem;
-use App\Models\BahanMasukItem;
+use App\Models\PurchaseOrder;
+use App\Models\PurchaseOrderDetail;
 use App\Models\StokOpnameItem;
 use Filament\Widgets\ChartWidget;
 use Flowframe\Trend\Trend;
@@ -15,10 +16,10 @@ class StokChart extends ChartWidget
 
     protected function getData(): array
     {
-        $bahanMasuk = Trend::model(BahanMasukItem::class)
+        $purchaseOrderItems = Trend::model(PurchaseOrderDetail::class)
             ->between(start: now()->subDays(6), end: now())
             ->perDay()
-            ->sum('jumlah');
+            ->sum('jumlah_datang');
 
         $bahanKeluar = Trend::model(BahanKeluarItem::class)
             ->between(start: now()->subDays(6), end: now())
@@ -28,8 +29,8 @@ class StokChart extends ChartWidget
         return [
             'datasets' => [
             [
-                'label' => 'Bahan Masuk',
-                'data' => $bahanMasuk->map(fn (TrendValue $value) => $value->aggregate), 
+                'label' => 'Jumlah Datang PO',
+                'data' => $purchaseOrderItems->map(fn (TrendValue $value) => $value->aggregate), 
                 'borderColor' => '#10b981',
                 'tension' => 0.1
             ],
@@ -40,7 +41,7 @@ class StokChart extends ChartWidget
                 'tension' => 0.1
             ],
         ],
-        'labels' => $bahanMasuk->map(fn (TrendValue $value) => $value->date)
+        'labels' => $purchaseOrderItems->map(fn (TrendValue $value) => $value->date)
         ];
     }
 

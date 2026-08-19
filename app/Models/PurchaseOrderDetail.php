@@ -10,6 +10,8 @@ class PurchaseOrderDetail extends Model
         'purchase_order_id',
         'bahan_id',
         'jumlah',
+        'jumlah_datang',
+        'catatan_gudang',
         'satuan',
     ];
 

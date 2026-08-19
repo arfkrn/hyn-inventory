@@ -20,9 +20,9 @@ class BahanTransactionOverview extends StatsOverviewWidget
         $todayStart = Carbon::today(); 
 
         // Ganti whereDate dengan perbandingan biasa (>=) agar database bisa menggunakan INDEX
-        $bahanMasuk = BahanMasukItem::whereHas('bahanMasuk', function ($query) use ($todayStart) {
-            $query->where('tanggal', '>=', $todayStart);
-        })->sum('jumlah');
+        $bahanMasuk = \App\Models\PurchaseOrderDetail::whereHas('purchaseOrder', function ($query) use ($todayStart) {
+            $query->where('tanggal_po', '>=', $todayStart);
+        })->sum('jumlah_datang');
 
         $bahanKeluar = BahanKeluarItem::whereHas('bahanKeluar', function ($query) use ($todayStart) {
             $query->where('tanggal', '>=', $todayStart);
@@ -44,9 +44,9 @@ class BahanTransactionOverview extends StatsOverviewWidget
 // {
 //     protected function getStats(): array
 //     {
-//         $bahanMasuk = BahanMasukItem::whereHas('bahanMasuk', function ($query) {
-//             $query->whereDate('tanggal', Carbon::today());
-//         })->sum('jumlah');
+//         $bahanMasuk = \App\Models\PurchaseOrderDetail::whereHas('purchaseOrder', function ($query) {
+//             $query->whereDate('tanggal_po', Carbon::today());
+//         })->sum('jumlah_datang');
 
 //         $bahanKeluar = BahanKeluarItem::whereHas('bahanKeluar', function ($query) {
 //             $query->whereDate('tanggal', Carbon::today());
